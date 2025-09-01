@@ -6,8 +6,7 @@ email_login_otp:
   message_type: status
   redirect_message: 'Please setup 2FA via email.'
   resend_wait_time: 2
-allow_enable_disable: 0
+allow_enable_disable: 1
 redirect: 0
 message_type: status
 redirect_message: 'Please setup 2FA via email.'
-resend_wait_time: '2'

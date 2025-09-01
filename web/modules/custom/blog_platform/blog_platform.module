@@ -1,0 +1,56 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for blog_platform module.
+ */
+
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\node\Entity\Node;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+
+/**
+ * Implements hook_cron().
+ */
+function blog_platform_cron() {
+  // Get the current year.
+  $current_year = (new DrupalDateTime())->format('Y');
+
+  // Calculate the year one year ago.
+  $one_year_ago_year = $current_year - 1;
+
+  // Get UIDs of guest bloggers.
+  $guest_blogger_uids = \Drupal::entityTypeManager()->getStorage('user')->getQuery()
+    ->condition('status', 1)
+    ->condition('roles', 'guest_bloggers')
+    ->accessCheck(FALSE)
+    ->execute();
+
+  // Construct the entity query for nodes.
+  $query = \Drupal::entityTypeManager()->getStorage('node')
+    ->getQuery()
+    ->condition('type', 'blog')
+    ->condition('uid', $guest_blogger_uids, 'IN')
+    ->accessCheck(FALSE);
+
+  $nids = $query->execute();
+
+  if (!empty($nids)) {
+    $nodes = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nids);
+    foreach ($nodes as $node) {
+      $published_value = $node->get('field_published_date')->value;
+      if ($published_value) {
+        $published_date = new DrupalDateTime($published_value);
+        $published_year = $published_date->format('Y');
+
+        if ($published_year <= $one_year_ago_year) {
+          $node->delete();
+          \Drupal::logger('custom_deletion')->notice(
+            'Deleted node: @title (@nid)',
+            ['@title' => $node->label(), '@nid' => $node->id()]
+          );
+        }
+      }
+    }
+  }
+}

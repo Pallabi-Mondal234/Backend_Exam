@@ -32,3 +32,4 @@ visibility:
     roles:
       administrator: administrator
       bloggers: bloggers
+      guest_bloggers: guest_bloggers
