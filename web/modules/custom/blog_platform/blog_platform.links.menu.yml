@@ -1,0 +1,6 @@
+blog_platform.settings:
+  title: 'Store api Value'
+  description: 'Store toke for api authorization.'
+  route_name: blog_platform.settings
+  parent: system.admin_config_system
+  weight: 100

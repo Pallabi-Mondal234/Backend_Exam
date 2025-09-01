@@ -1,0 +1,5 @@
+name: 'blog_platform'
+type: module
+description: 'A platform which handle blog post.'
+package: Custom
+core_version_requirement: ^10 || ^11
