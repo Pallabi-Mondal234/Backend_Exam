@@ -1,0 +1,25 @@
+uuid: 6ecace1c-cb93-4775-a24d-ca21679d0e91
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.site-menu
+  module:
+    - system
+  theme:
+    - olivero
+id: olivero_sitemenu
+theme: olivero
+region: secondary_menu
+weight: -8
+provider: null
+plugin: 'system_menu_block:site-menu'
+settings:
+  id: 'system_menu_block:site-menu'
+  label: 'Site Menu'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

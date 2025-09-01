@@ -1,0 +1,15 @@
+blog_portal.content:
+  path: '/api'
+  defaults:
+    _title: 'Site API'
+    _controller: 'Drupal\blog_platform\Controller\BlogApiController::showBlog'
+  requirements:
+    _permission: 'access content'
+
+blog_platform.settings:
+  path: '/admin/config/blog-platform'
+  defaults:
+    _form: '\Drupal\blog_platform\Form\BlogPlatformSettings'
+    _title: 'Blog Platform settings'
+  requirements:
+    _permission: 'access blog platform admin'

@@ -1,0 +1,6 @@
+_core:
+  default_config_hash: o1wWkhSOJotsHFgvzESaUOiTWhLak62cKBDyEtewAIM
+role_to_select:
+  bloggers: bloggers
+  guest_bloggers: guest_bloggers
+registration_mode: admin
