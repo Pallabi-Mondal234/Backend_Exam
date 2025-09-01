@@ -1,0 +1,8 @@
+uuid: d34db1d6-ac03-416f-b8a4-8077e6f821bb
+langcode: en
+status: true
+dependencies: {  }
+id: add-blogs
+label: 'Add Blogs'
+description: ''
+locked: false

@@ -1,0 +1,34 @@
+uuid: 0647bace-9da1-4c47-807d-1e445a61a5e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.add-blogs
+  module:
+    - system
+    - user
+  theme:
+    - olivero
+id: olivero_addblogs
+theme: olivero
+region: primary_menu
+weight: -7
+provider: null
+plugin: 'system_menu_block:add-blogs'
+settings:
+  id: 'system_menu_block:add-blogs'
+  label: 'Add Blogs'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      administrator: administrator
+      bloggers: bloggers
